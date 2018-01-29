@@ -1,0 +1,18 @@
+Pod::Spec.new do |s|
+  s.name                  = "Zingle"
+#  s.version               = "YOUR_VERSION"
+#  s.summary               = "YOUR_SUMMARY"
+#  s.homepage              = "YOUR_HOMEPAGE"
+#  s.author                = { "YOU" => "YOUR_EMAIL" }
+  s.license               = { :type => "Commercial", :text => "https://www.zingle.me/terms-of-use" }
+  s.source                   = { :path => '.' }
+  s.source_files          = "Zingle.framework/Headers/Zingle.h", "Zingle.framework/Headers/ZNGSettings.h", "Zingle.framework/Headers/ZNGUser.h", "Zingle.framework/Headers/ZNGConversation.h", "Zingle.framework/Headers/ZNGMessage.h", "Zingle.framework/Headers/ZNGMessageAction.h", "Zingle.framework/Headers/ZNGConversationActivity.h", "Zingle.framework/Headers/ZNGCoordinates.h"
+  s.preserve_paths        = "Zingle.framework/*"
+  s.module_map            = "Zingle.framework/Modules/module.modulemap"
+  s.frameworks            = "Zingle", "CoreText", "SystemConfiguration", "CoreTelephony", "Foundation", "CoreGraphics", "UIKit", "QuartzCore", "AssetsLibrary", "Photos", "AVFoundation", "CFNetwork"
+  s.library               = "icucore"
+  s.vendored_frameworks   = "Zingle.framework"
+  s.requires_arc          = true
+  s.platform              = :ios
+  s.ios.deployment_target = '8.0'
+end

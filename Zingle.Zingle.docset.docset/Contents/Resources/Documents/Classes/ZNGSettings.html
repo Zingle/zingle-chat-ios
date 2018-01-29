@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>ZNGSettings Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">Zingle </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Zingle</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/appId">appId</option>
+		
+		<option value="//api/name/authCode">authCode</option>
+		
+		<option value="//api/name/conversationAccentColor">conversationAccentColor</option>
+		
+		<option value="//api/name/conversationStatusBarStyle">conversationStatusBarStyle</option>
+		
+		<option value="//api/name/enableAppDelegateSwizzling">enableAppDelegateSwizzling</option>
+		
+		<option value="//api/name/enableUserNotificationCenterDelegateOverride">enableUserNotificationCenterDelegateOverride</option>
+		
+		<option value="//api/name/notificationDisplayTime">notificationDisplayTime</option>
+		
+		<option value="//api/name/requestPushPermissionOnFirstMessage">requestPushPermissionOnFirstMessage</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/settingsWithAppId:">+ settingsWithAppId:</option>
+		
+		<option value="//api/name/settingsWithAppId:andAuthCode:">+ settingsWithAppId:andAuthCode:</option>
+		
+	</optgroup>
+	
+
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">ZNGSettings Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>ZNGSettings.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/settingsWithAppId:" title="settingsWithAppId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/settingsWithAppId:">+&nbsp;settingsWithAppId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Initializes a settings object with the given app id.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)settingsWithAppId:(NSString *)<em>appId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>appId</code></th>
+						<td><p>A valid app id retrieved from the Zingle web portal.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/settingsWithAppId:andAuthCode:" title="settingsWithAppId:andAuthCode:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/settingsWithAppId:andAuthCode:">+&nbsp;settingsWithAppId:andAuthCode:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Initializes a settings object with the given app id and auth code.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)settingsWithAppId:(NSString *)<em>appId</em> andAuthCode:(NSString *)<em>authCode</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>appId</code></th>
+						<td><p>A valid app id retrieved from the Zingle web portal.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>authCode</code></th>
+						<td><p>A valid auth code generated from the Zingle API.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/appId" title="appId"></a>
+	<h3 class="method-title"><code><a href="#//api/name/appId">&nbsp;&nbsp;appId</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The app id corresponding to your application.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *appId</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>App id can be retrieved from the Zingle web portal</p>
+
+<p>This value may only be set once, and must be set at init time.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/authCode" title="authCode"></a>
+	<h3 class="method-title"><code><a href="#//api/name/authCode">&nbsp;&nbsp;authCode</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The auth code being used to authenticate as an existing user.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *authCode</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Auth code can be retrieved from the Zingle API</p>
+
+<p>This value may only be set once, and must be set at init time.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/conversationAccentColor" title="conversationAccentColor"></a>
+	<h3 class="method-title"><code><a href="#//api/name/conversationAccentColor">&nbsp;&nbsp;conversationAccentColor</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The accent color for the conversation screen.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *conversationAccentColor</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Used as the color of user message bubbles, as well as the color of the send button and text input caret.</p>
+
+<p>The default value is #00B0FF.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/conversationStatusBarStyle" title="conversationStatusBarStyle"></a>
+	<h3 class="method-title"><code><a href="#//api/name/conversationStatusBarStyle">&nbsp;&nbsp;conversationStatusBarStyle</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The status bar style to use on the conversation screen.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property UIStatusBarStyle conversationStatusBarStyle</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>You should use this property if your app uses UIAppearance to style UINavigationBar, and your styling requires a specific status bar color.</p>
+
+<p>The default value is UIStatusBarStyleDefault.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/notificationDisplayTime" title="notificationDisplayTime"></a>
+	<h3 class="method-title"><code><a href="#//api/name/notificationDisplayTime">&nbsp;&nbsp;notificationDisplayTime</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Maximum number of seconds to display in-app notifications before dismissing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property NSUInteger notificationDisplayTime</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Setting this value to 0 will cause notications to stay on-screen until the user acts on them.</p>
+
+<p>The default value is 8.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enableAppDelegateSwizzling" title="enableAppDelegateSwizzling"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enableAppDelegateSwizzling">&nbsp;&nbsp;enableAppDelegateSwizzling</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Whether or not to swizzle app delegate methods for handling push notifications.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL enableAppDelegateSwizzling</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>When set to YES, Zingle will swizzle the following methods of your UIApplicationDelegate in order to automatically handle push notification receiving and registering, as well as user notification handling.</p>
+
+<ol>
+<li>-application:didRegisterForRemoteNotificationsWithDeviceToken:</li>
+<li>-application:didFailToRegisterForRemoteNotificationsWithError:</li>
+<li>-application:didReceiveRemoteNotification:</li>
+<li>-application:didReceiveRemoteNotification:fetchCompletionHandler:</li>
+<li>-application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:</li>
+</ol>
+
+
+<p>If set to NO, Zingle will not perform swizzling. It is up to the app to handle Zingle push notifications by doing the following:</p>
+
+<ol>
+<li>When a new push token is received in -application:didRegisterForRemoteNotificationsWithDeviceToken:, you must call Zingle +setPushToken.</li>
+<li>In your -application:didReceiveRemoteNotification: or -application:didReceiveRemoteNotification:fetchCompletionHandler: callback, you must call Zingle +handlePushNotification: with the passed userInfo dictionary.</li>
+<li>In your -application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler: callback, you must call Zingle +handleUserNotificationActionWithIdentifier:withResponseInfo:completionHandler: with the correct parameters.</li>
+</ol>
+
+
+<p>The default value is YES.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/Zingle.html">Zingle</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enableUserNotificationCenterDelegateOverride" title="enableUserNotificationCenterDelegateOverride"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enableUserNotificationCenterDelegateOverride">&nbsp;&nbsp;enableUserNotificationCenterDelegateOverride</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Whether or not to automatically replace the application&rsquo;s UNUserNotificationCenterDelegate at init time.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL enableUserNotificationCenterDelegateOverride</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>For more information, see the +userNotificationCenterDelegate method of the Zingle class.</p>
+
+<p>If set to NO, the application must forward calls from its own UNUserNotificationCenterDelegate to Zingle to ensure proper handling of notifications on iOS 10.</p>
+
+<p>The default value is YES.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/Zingle.html">Zingle</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestPushPermissionOnFirstMessage" title="requestPushPermissionOnFirstMessage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestPushPermissionOnFirstMessage">&nbsp;&nbsp;requestPushPermissionOnFirstMessage</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Whether or not to request user notification privileges after the user sends their first message.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL requestPushPermissionOnFirstMessage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If your app has a preferred time to request user notification privileges, set this to NO.</p>
+
+<p>If set to NO, the application must make sure to register the Zingle user notification category settings. For more information, see the +userNotificationCategories method of the Zingle class.</p>
+
+<p>The default value is YES.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/Zingle.html">Zingle</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ZNGSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2018 Zingle. All rights reserved. Updated: 2018-01-23</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
