@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
   s.module_map            = "Zingle.framework/Modules/module.modulemap"
   s.frameworks            = "Zingle", "CoreText", "SystemConfiguration", "CoreTelephony", "Foundation", "CoreGraphics", "UIKit", "QuartzCore", "AssetsLibrary", "Photos", "AVFoundation", "CFNetwork"
   s.library               = "icucore"
-  s.xcconfig              = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/Zingle" }
   s.vendored_frameworks   = "Zingle.framework"
   s.requires_arc          = true
   s.platform              = :ios
