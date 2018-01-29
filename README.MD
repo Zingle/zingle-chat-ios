@@ -12,7 +12,7 @@ gem install cocoapods
 
 ```ruby
 target 'YourApp' do
-    pod 'Zingle'
+    pod 'ZingleMessaging'
 end
 ```
 
