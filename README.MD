@@ -8,22 +8,21 @@ To add the Zingle.framework library to your XCode project, follow the steps belo
 gem install cocoapods
 ```
 
-2. Copy the `Zingle.framework` and `Zingle.podspec` files somewhere in your project directory, for example in `vendor/Zingle`
-3. Add the Zingle dependency to your [Podfile](https://guides.cocoapods.org/using/the-podfile.html), using a local `path` that points to the directory in step 2
+2. Add the Zingle dependency to your [Podfile](https://guides.cocoapods.org/using/the-podfile.html)
 
 ```ruby
 target 'YourApp' do
-    pod 'Zingle', :path => 'vendor/Zingle'
+    pod 'ZingleMessaging'
 end
 ```
 
-4. Install the pod
+3. Install the pod
 
 ```bash
 pod install
 ```
 
-5. Open the generated `.xcworkspace` file, and start using the framework in your code.
+4. Open the generated `.xcworkspace` file, and start using the framework in your code.
 
 Objective-C:
 
