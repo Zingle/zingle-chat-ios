@@ -41,3 +41,6 @@ Zingle.initWith(ZNGSettings(appId: "YOUR_APP_ID")) { (error: Error?, userInfo: [
     // Your code after init is complete
 }
 ```
+
+# Documentation
+Detailed documentation is available in the docset contained in this repository
