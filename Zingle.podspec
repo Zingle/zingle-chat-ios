@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name                  = "Zingle"
   s.version               = "1.0.0"
   s.summary               = "Zingle Messaging SDK"
-  s.description      = "Zingle is a multi-channel communications platform that allows the sending, receiving, and automating of conversations between a business and a customer.  The Zingle Messaging SDK provides Zingle customers (businesses) a chat interface for use in their own native iOS applications, allowing users to communicate via Zingle without requiring them to use SMS or another external channel." 
+  s.description           = "Zingle is a multi-channel communications platform that allows the sending, receiving, and automating of conversations between a business and a customer.  The Zingle Messaging SDK provides Zingle customers (businesses) a chat interface for use in their own native iOS applications, allowing users to communicate via Zingle without requiring them to use SMS or another external channel." 
   s.homepage              = "https://github.com/Zingle/zingle-chat-ios"
   s.author                = { "Jason Neel" => "jneel@zingleme.com" }
   s.source 	              = { :git => "https://github.com/Zingle/zingle-chat-ios.git", :tag => s.version.to_s }
