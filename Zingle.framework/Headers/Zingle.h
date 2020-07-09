@@ -2,17 +2,19 @@
 //  Zingle.h
 //  Zingle
 //
-//  version : 1.1.0
+//  version : 3.0.1
 
 #import <Foundation/Foundation.h>
 #import "ZNGConversation.h"
 #import "ZNGSettings.h"
 #import "ZNGUser.h"
+#import "ZNGParticipant.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol UNUserNotificationCenterDelegate;
 
-#define ZINGLE_VERSION @"1.1.0"
+#define ZINGLE_VERSION @"3.0.1"
+#define VENDOR_ID @"zingle"
 
 FOUNDATION_EXPORT double ZingleVersionNumber;
 FOUNDATION_EXPORT const unsigned char ZingleVersionString[];
@@ -209,6 +211,15 @@ extern NSString* const ZNGLogoutDidFailNotification;
 +(void)show;
 
 /**
+ *  @abstract Presents the Zingle conversation screen with prefilled text in the message input.
+ *
+ *  @discussion Uses the top-most view controller of the `UIApplicationDelegate` as the presenting view controller with prefilled text in the message input.
+ *
+ *  +initWithSettings:completionHandler: must have been called prior to calling this method.
+ */
++(void)showWithStartingText:(nullable NSString *)startingText;
+
+/**
  *  @abstract Dismisses the Zingle conversation, if shown.
  *
  *  @discussion Note: If a view controller was created and presented using `newConversationViewController`, calling this method will have no effect.
@@ -235,6 +246,15 @@ extern NSString* const ZNGLogoutDidFailNotification;
 +(void)showConversationFromViewController:(UIViewController*)viewController;
 
 /**
+ *  @abstract Presents the Zingle conversation screen, using the given view controller as presenting view controller with prefilled text in the message input.
+ *
+ *  @discussion In most cases, it is better to use +show. If you need more fine-grained control over which view controller is used as presenting view controller, use this method instead.
+ *
+ *  +initWithSettings:completionHandler: must have been called prior to calling this method.
+ */
++(void)showConversationFromViewController:(UIViewController*)viewController withStartingText:(nullable NSString *)startingText;
+
+/**
  *  @abstract Creates and returns a Zingle conversation view controller.
  *
  *  @discussion You may use this view controller to embed the conversation in a navigation controller, to change the modal presentation style, or display it in any way you choose.
@@ -246,6 +266,19 @@ extern NSString* const ZNGLogoutDidFailNotification;
  *  @return A new instance of the Zingle conversation view controller class. Returns nil if +initWithSettings:completionHandler: hasn't been called
  */
 +(nullable UIViewController*)newConversationViewController;
+
+/**
+ *  @abstract Creates and returns a Zingle conversation view controller with prefilled text in the message input.
+ *
+ *  @discussion You may use this view controller to embed the conversation in a navigation controller, to change the modal presentation style, or display it in any way you choose. The message input will be prefilled with the given `startingText`
+ *
+ *  A view controller created in this way is tied to the current user's conversation at creation time. If the current user changes (i.e. by calling +login:jwt:completionHandler: or +logoutWithCompletionHandler:), the view controller is invalidated and must be recreated for the new user.
+ *
+ *  Note: It is the responsibility of the caller to show, hide, and maintain a reference to this view controller. Calling `close` will not dismiss a view controller created in this way.
+ *
+ *  @return A new instance of the Zingle conversation view controller class. Returns nil if +initWithSettings:completionHandler: hasn't been called
+ */
++(nullable UIViewController*)newConversationViewControllerWithStartingText:(nullable NSString *)startingText;
 
 /**
  *  @abstract Sets the current user's first and last name to be used as a display name when sending messages.
@@ -266,7 +299,17 @@ extern NSString* const ZNGLogoutDidFailNotification;
  *
  *  @return Current conversation, or nil if +initWithSettings:completionHandler: hasn't been called yet.
  */
-+(nullable ZNGConversation*)conversation;
++ (nullable ZNGConversation *)conversation;
+
+/**
+ * @abstract Get a conversationById. This is an asynchronous call and requires a callback to retrieve the result.
+ *
+ * +initWithSettings:completionHandler: must have been called prior to calling this method.
+ *
+ * @see ZNGConversation
+ * @param conversationId the conversationId
+ */
++ (void)conversationById:(NSString *)conversationId completionHandler:(nullable void(^)(NSError * _Nullable error, ZNGConversation * _Nullable conversation))handler;
 
 /**
  *  @abstract Logs in a new Zingle user.
@@ -305,6 +348,19 @@ extern NSString* const ZNGLogoutDidFailNotification;
  *  If a conversation already exists for the current user, this call is a no-op.
  */
 +(void)startConversationWithCompletionHandler:(nullable void(^)(NSError * _Nullable error, NSDictionary * _Nullable userInfo))completionHandler;
+
+/**
+ *  @abstract Toggles whether the input bar is displayed on the conversation view.
+ *
+ *  @discussion For some use cases, it can be useful to remove the ability for the user to craft their own messages. For example, if your conversation flow relies solely on postback buttons or quick replies, you may not want to allow the user to send anything other than the presented options.
+ *
+ *  Passing NO to this method will hide the input bar entirely, including the media button and the text area, thus preventing the user from sending messages themselves.
+ *
+ *  This method may be called at any time, even when the conversation view is currently displayed.
+ *
+ *  State is persisted across view controller launches.
+ */
++(void)setConversationInputDisplayed:(BOOL)displayed;
 
 /**
  *  @abstract Set the push notification token for this device.
@@ -362,6 +418,21 @@ extern NSString* const ZNGLogoutDidFailNotification;
 /**
  *  @abstract Handle the user input from a reply type notification action.
  *
+ *  @discussion Call this method in your -application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:, passing the action identifier, userInfo dictionary, responseInfo dictionary, and completionHandler callback.
+ *
+ *  This method will post a message on behalf of the user, with the contents of their inline reply. When the message upload completes (either in success or failure), the completion handler will be called.
+ *
+ *  If the action identifier does not match ZNGUserNotificationReplyActionIdentifier, the completion handler will be called immediately and the notification will be ignored.
+ *
+ *  This method is called automatically if ZNGSettings.enableAppDelegateSwizzling is set to YES.
+ *
+ *  @see ZNGSettings
+ */
++(void)handleUserNotificationActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)(void))completionHandler;
+
+/**
+ *  @abstract Handle the user input from a reply type notification action.
+ *
  *  @discussion Call this method in your -application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:, passing the action identifier, responseInfo dictionary, and completionHandler callback.
  *
  *  This method will post a message on behalf of the user, with the contents of their inline reply. When the message upload completes (either in success or failure), the completion handler will be called.
@@ -371,6 +442,7 @@ extern NSString* const ZNGLogoutDidFailNotification;
  *  This method is called automatically if ZNGSettings.enableAppDelegateSwizzling is set to YES.
  *
  *  @see ZNGSettings
+ *  @deprecated use +handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler: instead.
  */
 +(void)handleUserNotificationActionWithIdentifier:(NSString *)identifier withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)(void))completionHandler;
 
@@ -386,6 +458,32 @@ extern NSString* const ZNGLogoutDidFailNotification;
  *  @see ZNGSettings
  */
 +(NSSet*)userNotificationCategories;
+
+/**
+ *  @abstract Loads a conversation by its ID and sets it as the active conversation for the current session.
+ *
+ *  @discussion When called, subscribes the current device for push notifications on the passed conversationId, and sets the SDK to send and receive messages for that conversation going forward. Does not unsubscribe for notification on previously loaded conversations.
+ *
+ *  If the conversation is already set to the passed ID, this call is a no-op.
+ */
++(void)loadConversation:(NSString*)conversationId completionHandler:(nullable void(^)(NSError * _Nullable error, NSDictionary * _Nullable userInfo))completionHandler;
+
+/**
+ *
+ * @abstract Loads a list of conversations
+ *
+ * @discussion when called, returns an array of Conversation objects from storage
+ *
+ */
++ (void)getConversations:(void (^)(NSError  *_Nullable, NSArray  *_Nullable))completionHandler;
+
+/**
+ *
+ * @abstract Updating the conversation delegate
+ *
+ *  @discussion when called, a new delegate is set
+ */
++ (void)updateConversationDelegate:(id<ZNGConversationDelegate>)delegate;
 
 @end
 NS_ASSUME_NONNULL_END

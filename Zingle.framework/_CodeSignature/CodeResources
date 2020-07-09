@@ -4,41 +4,61 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Assets.car</key>
+		<data>
+		JpWasX4Jy9KmwySP2tAGdekukBQ=
+		</data>
+		<key>Headers/ZNGAuthenticationDelegate.h</key>
+		<data>
+		429UAgq5m7xkV1nKIhKBBVXnuPg=
+		</data>
 		<key>Headers/ZNGConversation.h</key>
 		<data>
-		ZbBcdLNNJoBMuTnxt5ujlfWrc/U=
+		TqFZaEi+Z2PGYEQf1ZOOMOiTVjg=
 		</data>
 		<key>Headers/ZNGConversationActivity.h</key>
 		<data>
-		00Euy61xeHq8qBOLzygnLMyeAmc=
+		ipnSKz6gCnMYAdYbdGyFdZPJFYk=
 		</data>
 		<key>Headers/ZNGCoordinates.h</key>
 		<data>
 		8M+6BYW66mQr4LNF/H8bYJXdS2w=
 		</data>
+		<key>Headers/ZNGDisplaySettings.h</key>
+		<data>
+		UtfpIm34KQ9zSsBRAzLbJHg0cOQ=
+		</data>
 		<key>Headers/ZNGMessage.h</key>
 		<data>
-		f9WFhjGj4gTgvaS2W3b8kFPPp2M=
+		Bg/mJD+XOk4CvM2qofZqmstsr2g=
 		</data>
 		<key>Headers/ZNGMessageAction.h</key>
 		<data>
-		mxD1GmLwYSv63BP5lPvaRfDrtxA=
+		9suaLln/hPz6p/LUQRE3/4VUPZ4=
+		</data>
+		<key>Headers/ZNGMessageItem.h</key>
+		<data>
+		wPyYb5UzcAXazvihMYFpp8k157c=
+		</data>
+		<key>Headers/ZNGParticipant.h</key>
+		<data>
+		2XtVi5cbXo0aOHJSk7UStn9cnpY=
 		</data>
 		<key>Headers/ZNGSettings.h</key>
 		<data>
-		X31BDFdrE+uGvTcGVxLoN8/OadM=
+		+JDKGgCzAWBdbhxeSCxMG0704rc=
 		</data>
 		<key>Headers/ZNGUser.h</key>
 		<data>
-		QxGnHrzXfRoFH0zRC+Y8zx1v8dU=
+		L50Lpc4B10k74o3lPXJqEfTP4UQ=
 		</data>
 		<key>Headers/Zingle.h</key>
 		<data>
-		rDV7ZhDyf4+Bmo4h1mJ5QEKFuWg=
+		e6hkH43GPCmePa8if1AVp2bT870=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		pARO0a3nPuTWzE0ZVvfIDflDLds=
+		GN0SI/efyIl0+MbgCFuI1M+m/9Q=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -90,7 +110,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iQaKM/V3P8yCZrDmzl+W7Zjcvr0=
+			FRhNPQ3Dpb2UtP1is1wLmRhA4Xs=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -174,6 +194,18 @@
 		<data>
 		OKdo9S8LS2EfWPcOgegSdRUagpM=
 		</data>
+		<key>mediaButton.png</key>
+		<data>
+		6nUifgRcOUO926EURsx6sq0+HkI=
+		</data>
+		<key>mediaButton@2x.png</key>
+		<data>
+		oF/OHwKj6iMphgjYL7W7dz2NYxw=
+		</data>
+		<key>mediaButton@3x.png</key>
+		<data>
+		+twwLCQ8p7imtIgY8aSvfhjgSQs=
+		</data>
 		<key>nl.lproj/ZingleLocalizable.strings</key>
 		<dict>
 			<key>hash</key>
@@ -183,6 +215,18 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>paperClip.png</key>
+		<data>
+		1avpH6UM8Cq/V8IsulyEoDdVctw=
+		</data>
+		<key>paperClip@2x.png</key>
+		<data>
+		kOaipYoltnL0THCsiaLODUJMj5s=
+		</data>
+		<key>paperClip@3x.png</key>
+		<data>
+		gYrKSe6BwOrIPEumoID5dKVCKzQ=
+		</data>
 		<key>pt-BR.lproj/ZingleLocalizable.strings</key>
 		<dict>
 			<key>hash</key>
@@ -378,26 +422,48 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Assets.car</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			JpWasX4Jy9KmwySP2tAGdekukBQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			V0mzKyfcjwsVxgNLnZtB4wkzcyERsyv9UpffhzQzKrQ=
+			</data>
+		</dict>
+		<key>Headers/ZNGAuthenticationDelegate.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			429UAgq5m7xkV1nKIhKBBVXnuPg=
+			</data>
+			<key>hash2</key>
+			<data>
+			XUYNa8OUnmb7dFwlpJjUuRXAhM/+POGjvHXFMDnvVOE=
+			</data>
+		</dict>
 		<key>Headers/ZNGConversation.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ZbBcdLNNJoBMuTnxt5ujlfWrc/U=
+			TqFZaEi+Z2PGYEQf1ZOOMOiTVjg=
 			</data>
 			<key>hash2</key>
 			<data>
-			y/zxcylk/oQPOSTKBJRzWUdhYV4nmLi6XakFJlllWFg=
+			xpvRUD0tU4dYtj6kxn3hoQVk/AKnRd4PyTTZ70gFWBk=
 			</data>
 		</dict>
 		<key>Headers/ZNGConversationActivity.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			00Euy61xeHq8qBOLzygnLMyeAmc=
+			ipnSKz6gCnMYAdYbdGyFdZPJFYk=
 			</data>
 			<key>hash2</key>
 			<data>
-			afZd/ffV9EByvc70y60ZvltZe3AVWsTGfO2Aj4/34Ro=
+			03egRdAwnAT/OsGSUNEAP28EA+tQWyykjVxPr2HIWPg=
 			</data>
 		</dict>
 		<key>Headers/ZNGCoordinates.h</key>
@@ -411,59 +477,92 @@
 			wdpwJ88yghbge9ufnxX8i9MpRI+j/kQt+Ip760L5+vQ=
 			</data>
 		</dict>
+		<key>Headers/ZNGDisplaySettings.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			UtfpIm34KQ9zSsBRAzLbJHg0cOQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			HX9WC/eT7uxYo8vOAZQgTzIXtN22zSiqRz9hMHi7YtA=
+			</data>
+		</dict>
 		<key>Headers/ZNGMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			f9WFhjGj4gTgvaS2W3b8kFPPp2M=
+			Bg/mJD+XOk4CvM2qofZqmstsr2g=
 			</data>
 			<key>hash2</key>
 			<data>
-			ie2zan4AQNpUxPF+bOX4pWwVtqkFywoy2jiV4R33z+g=
+			a2/3swP8/BJgzsg7XSmiAWrhkuxRZDGwBF7k1wwS4Fg=
 			</data>
 		</dict>
 		<key>Headers/ZNGMessageAction.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			mxD1GmLwYSv63BP5lPvaRfDrtxA=
+			9suaLln/hPz6p/LUQRE3/4VUPZ4=
 			</data>
 			<key>hash2</key>
 			<data>
-			2dqbCMTaxkMIG8cpJbOpFgR1dfW8VwETnN/0S6AZiOE=
+			J3onSmxFJ29bIZad44jIsvzm4woGvzqJLeEMPu/Sk50=
+			</data>
+		</dict>
+		<key>Headers/ZNGMessageItem.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wPyYb5UzcAXazvihMYFpp8k157c=
+			</data>
+			<key>hash2</key>
+			<data>
+			xe54tmcp6sa2AHVbuxH16ucZONaplNna2+UNOrAQzj4=
+			</data>
+		</dict>
+		<key>Headers/ZNGParticipant.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2XtVi5cbXo0aOHJSk7UStn9cnpY=
+			</data>
+			<key>hash2</key>
+			<data>
+			LMWJAj1MEe9ZM5tM/dKJ7yCyNbkVW38xDE3ZQf2Wcjc=
 			</data>
 		</dict>
 		<key>Headers/ZNGSettings.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			X31BDFdrE+uGvTcGVxLoN8/OadM=
+			+JDKGgCzAWBdbhxeSCxMG0704rc=
 			</data>
 			<key>hash2</key>
 			<data>
-			6JNIdVyvYIbPeHG1BDiOm3A9+PTEt6e3jHJyDcJwmLY=
+			TdgjAXvZ0j4yvrYRyJ76/FfrqoGVpXiXHWGis2MVg2I=
 			</data>
 		</dict>
 		<key>Headers/ZNGUser.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			QxGnHrzXfRoFH0zRC+Y8zx1v8dU=
+			L50Lpc4B10k74o3lPXJqEfTP4UQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			/w8exVgZLDp6teAcfq9aJAkCwLpr8BP5TWsmo6e9qro=
+			GPcSkt6Daaf8GTqFHA+enfzYqfa/XXq5DQCzXo2md5U=
 			</data>
 		</dict>
 		<key>Headers/Zingle.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rDV7ZhDyf4+Bmo4h1mJ5QEKFuWg=
+			e6hkH43GPCmePa8if1AVp2bT870=
 			</data>
 			<key>hash2</key>
 			<data>
-			3cCkrgQ2msuQO+X2S3vBgCP2GiyPLhpTrQwUZXhNRvU=
+			Jw6S2m2w1FpMTrDu+HD48xncXAT6EudwsLs8ZxbZsXg=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -573,11 +672,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iQaKM/V3P8yCZrDmzl+W7Zjcvr0=
+			FRhNPQ3Dpb2UtP1is1wLmRhA4Xs=
 			</data>
 			<key>hash2</key>
 			<data>
-			rQHyc5lJ1vMyEhueKMHi1p8B54uvjml5uINPamAUGAs=
+			iEY3aOd4lH8iC1GxcNmue722d1aCJg4kvihrE0Qmwfw=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -717,6 +816,39 @@
 			sJGxzQ87hrck5OFNwBpzorpHJsHrxviTSfcpXvx2/34=
 			</data>
 		</dict>
+		<key>mediaButton.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			6nUifgRcOUO926EURsx6sq0+HkI=
+			</data>
+			<key>hash2</key>
+			<data>
+			AD0yYuoh/6APY1Va1b+7hZhp6QuPHQSOJmJZiqL7x4M=
+			</data>
+		</dict>
+		<key>mediaButton@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			oF/OHwKj6iMphgjYL7W7dz2NYxw=
+			</data>
+			<key>hash2</key>
+			<data>
+			g5N+iyWzPWflfkk9a/x5L+gehhVf+cFMMpqdEaRBHkE=
+			</data>
+		</dict>
+		<key>mediaButton@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+twwLCQ8p7imtIgY8aSvfhjgSQs=
+			</data>
+			<key>hash2</key>
+			<data>
+			WJYw3O7klQxspjQ6AMaORw7LVjjjkRAh0mcsHzIsLMg=
+			</data>
+		</dict>
 		<key>nl.lproj/ZingleLocalizable.strings</key>
 		<dict>
 			<key>hash</key>
@@ -729,6 +861,39 @@
 			</data>
 			<key>optional</key>
 			<true/>
+		</dict>
+		<key>paperClip.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1avpH6UM8Cq/V8IsulyEoDdVctw=
+			</data>
+			<key>hash2</key>
+			<data>
+			g6j1Re+OLSHH3KvUujJ85/lJZM1nNrZNjJutbcIXCMw=
+			</data>
+		</dict>
+		<key>paperClip@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			kOaipYoltnL0THCsiaLODUJMj5s=
+			</data>
+			<key>hash2</key>
+			<data>
+			Nu33i3Jl6Xj1bx3FFKKS/ea0yCvKiqGu20exKUxNQZM=
+			</data>
+		</dict>
+		<key>paperClip@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			gYrKSe6BwOrIPEumoID5dKVCKzQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			AGQOZItOUyotZrzDph4MTQeAT8g5SLsWMPJ/Kh0Ky58=
+			</data>
 		</dict>
 		<key>pt-BR.lproj/ZingleLocalizable.strings</key>
 		<dict>
@@ -1167,7 +1332,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -1198,24 +1363,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -1251,13 +1404,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

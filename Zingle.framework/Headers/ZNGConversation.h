@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "ZNGMessage.h"
 #import "ZNGMessageAction.h"
+#import "ZNGMessageItem.h"
 #import "ZNGConversationActivity.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -13,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^ZNGImageUploadProgressBlock)(double progress);
 typedef void (^ZNGImageUploadCompletionBlock)(NSError* _Nullable error, ZNGMessage* _Nullable message);
+typedef void (^ZNGFileUploadProgressBlock)(double progress);
+typedef void (^ZNGFileUploadCompletionBlock)(NSError* _Nullable error, ZNGMessage* _Nullable message);
 
 /**
  *  @discussion Represents various actions the user takes when interacting with Zingle UI components.
@@ -33,7 +36,7 @@ typedef NS_ENUM(NSInteger, ZNGAction) {
  *
  *  @see ZNGConversation
  */
-extern NSString* const ZNGConversationUnreadCountDidChangeNotification;
+extern NSString * const ZNGConversationUnreadCountDidChangeNotification;
 
 /**
  *  @abstract Posted when an image upload begins.
@@ -44,7 +47,7 @@ extern NSString* const ZNGConversationUnreadCountDidChangeNotification;
  *
  *  @see ZNGConversationImageKey
  */
-extern NSString* const ZNGConversationImageUploadDidStartNotification;
+extern NSString * const ZNGConversationImageUploadDidStartNotification;
 
 /**
  *  @abstract Posted when an image upload receives a progress update.
@@ -56,7 +59,7 @@ extern NSString* const ZNGConversationImageUploadDidStartNotification;
  *  @see ZNGConversationImageKey
  *  @see ZNGConversationProgressKey
  */
-extern NSString* const ZNGConversationImageUploadProgressDidChangeNotification;
+extern NSString * const ZNGConversationImageUploadProgressDidChangeNotification;
 
 /**
  *  @abstract Posted when an image upload completes, either in success or failure.
@@ -73,7 +76,47 @@ extern NSString* const ZNGConversationImageUploadProgressDidChangeNotification;
  *  @see ZNGConversationMessageKey
  *  @see ZNGConversationErrorKey
  */
-extern NSString* const ZNGConversationImageUploadCompletedNotification;
+extern NSString * const ZNGConversationImageUploadCompletedNotification;
+
+/**
+ *  @abstract Posted when a file upload begins.
+ *
+ *  @discussion The userInfo dictionary contains the url of the file to upload. Use ZNGConversationFileKey to access this value.
+ *
+ *  This notification is guaranteed to fire on the main thread.
+ *
+ *  @see ZNGConversationFileKey
+ */
+extern NSString * const ZNGConversationFileUploadDidStartNotification;
+
+/**
+ *  @abstract Posted when a file upload receives a progress update.
+ *
+ *  @discussion The userInfo dictionary contains the url of the file being uploaded, as well as an NSNumber reflecting the current progress. Use ZNGConversationFileKey and ZNGConversationProgressKey to access these values.
+ *
+ *  This notification is guaranteed to fire on the main thread.
+ *
+ *  @see ZNGConversationFileKey
+ *  @see ZNGConversationProgressKey
+ */
+extern NSString * const ZNGConversationFileUploadProgressDidChangeNotification;
+
+/**
+ *  @abstract Posted when a file upload completes, either in success or failure.
+ *
+ *  @discussion The userInfo dictionary contains the url of the file that was uploaded. Use ZNGConversationFileKey to access this value.
+ *
+ *  If the upload succeeded, the userInfo dictionary will also include the ZNGMessage instance of the new message. Use ZNGConversationMessageKey to access this value.
+ *  If the upload failed, the userInfo dictionary will include the NSError that occurred. Use ZNGConversationErrorKey to access this value.
+ *
+ *  This notification is guaranteed to fire on the main thread.
+ *
+ *  @see ZNGMessage
+ *  @see ZNGConversationFileKey
+ *  @see ZNGConversationMessageKey
+ *  @see ZNGConversationErrorKey
+ */
+extern NSString * const ZNGConversationFileUploadCompletedNotification;
 
 /**
  *  @abstract Posted when new messages are received from the server.
@@ -83,7 +126,7 @@ extern NSString* const ZNGConversationImageUploadCompletedNotification;
  *  @see ZNGMessage
  *  @see ZNGConversationNewMessagesKey
  */
-extern NSString* const ZNGConversationDidReceiveMessagesNotification;
+extern NSString * const ZNGConversationDidReceiveMessagesNotification;
 
 /**
  *  @abstract Posted when an operation to load previous messages in a conversation has been completed
@@ -96,7 +139,7 @@ extern NSString* const ZNGConversationDidReceiveMessagesNotification;
  *  @see ZNGMessage
  *  @see ZNGConversationPreviousMessagesKey
  */
-extern NSString* const ZNGConversationDidReceivePreviousMessagesNotification;
+extern NSString * const ZNGConversationDidReceivePreviousMessagesNotification;
 
 /**
  *  @abstract Posted when a conversation activity has been created, such as typing start/stop
@@ -104,7 +147,7 @@ extern NSString* const ZNGConversationDidReceivePreviousMessagesNotification;
  *  @see ZNGConversationActivity
  *  @see ZNGConversationActivityKey
  */
-extern NSString* const ZNGConversationDidReceiveActivityNotification;
+extern NSString * const ZNGConversationDidReceiveActivityNotification;
 
 /**
  *  @abstract A key whose value is an NSArray of ZNGMessage objects.
@@ -113,7 +156,7 @@ extern NSString* const ZNGConversationDidReceiveActivityNotification;
  *
  *  @see ZNGConversationDidReceiveMessagesNotification
  */
-extern NSString* const ZNGConversationNewMessagesKey;
+extern NSString * const ZNGConversationNewMessagesKey;
 
 /**
  *  @abstract A key whose value is an NSArray of ZNGMessage objects
@@ -122,7 +165,7 @@ extern NSString* const ZNGConversationNewMessagesKey;
  *
  *  @see ZNGConversationDidReceivePreviousMessagesNotification
  */
-extern NSString* const ZNGConversationPreviousMessagesKey;
+extern NSString * const ZNGConversationPreviousMessagesKey;
 
 /**
  *  @abstract A key whose value is a UIImage which represents an image being uploaded.
@@ -133,7 +176,18 @@ extern NSString* const ZNGConversationPreviousMessagesKey;
  *  @see ZNGConversationImageUploadProgressDidChangeNotification
  *  @see ZNGConversationImageUploadCompletedNotification
  */
-extern NSString* const ZNGConversationImageKey;
+extern NSString * const ZNGConversationImageKey;
+
+/**
+ *  @abstract A key whose value is an NSURL which represents a file being uploaded.
+ *
+ *  @discussion This key is used with ZNGConversationFileUploadDidStartNotification, ZNGConversationFileUploadProgressDidChangeNotification, and ZNGConversationFileUploadCompletedNotification notifications.
+ *
+ *  @see ZNGConversationFileUploadDidStartNotification
+ *  @see ZNGConversationFileUploadProgressDidChangeNotification
+ *  @see ZNGConversationFileUploadCompletedNotification
+ */
+extern NSString * const ZNGConversationFileKey;
 
 /**
  *  @abstract A key whose value is an NSError.
@@ -142,7 +196,7 @@ extern NSString* const ZNGConversationImageKey;
  *
  *  @see ZNGConversationImageUploadCompletedNotification
  */
-extern NSString* const ZNGConversationErrorKey;
+extern NSString * const ZNGConversationErrorKey;
 
 /**
  *  @abstract A key whose value is an ZNGMessage object representing the newly created message.
@@ -151,7 +205,7 @@ extern NSString* const ZNGConversationErrorKey;
  *
  *  @see ZNGConversationImageUploadCompletedNotification
  */
-extern NSString* const ZNGConversationMessageKey;
+extern NSString * const ZNGConversationMessageKey;
 
 /**
  *  @abstract A key whose value is an NSNumber reflecting the current progress of an image upload.
@@ -160,7 +214,7 @@ extern NSString* const ZNGConversationMessageKey;
  *
  *  @see ZNGConversationImageUploadProgressDidChangeNotification
  */
-extern NSString* const ZNGConversationProgressKey;
+extern NSString * const ZNGConversationProgressKey;
 
 /**
  *  @abstract A key whose value is a ZNGConversationActivity object representing the newly created activity
@@ -169,7 +223,7 @@ extern NSString* const ZNGConversationProgressKey;
  *
  *  @see ZNGConversationDidReceiveActivityNotification
  */
-extern NSString* const ZNGConversationActivityKey;
+extern NSString * const ZNGConversationActivityKey;
 
 /**
  *  @discussion The ZNGConversation class provides an interface to interact with the current user's conversation.
@@ -193,14 +247,19 @@ extern NSString* const ZNGConversationActivityKey;
  *  @see ZNGMessage
  *  @see Zingle
  */
-@interface ZNGConversation : NSObject
+@interface ZNGConversation : NSObject <NSSecureCoding>
+
+/**
+ *  @abstract The unique identifier of the conversation. May be nil if a conversation doesn't exist for the current user
+ */
+@property(readonly, nullable) NSString *conversationId;
 
 /**
  *  @abstract The array of ZNGMessage objects representing the conversation.
  *
  *  @see ZNGMessage
  */
-@property(readonly, nullable) NSArray* messages;
+@property(readonly, nullable) NSArray *messages;
 
 /**
  *  @abstract The total number of messages in the conversation, including user-generated messages.
@@ -217,7 +276,14 @@ extern NSString* const ZNGConversationActivityKey;
 /**
  *  @abstract Date when the business last read the user messages
  */
-@property(readonly) NSDate *appMakerLastRead;
+@property(readonly, nullable) NSDate *appMakerLastRead;
+
+/**
+ *  @abstract Metadata associated with the conversation.
+ *
+ *  @discussion A flat dictionary of metadata set through the REST API. May be nil.
+ */
+@property(readonly, nullable) NSDictionary *metadata;
 
 /**
  *  @abstract A delegate object for receiving notifications related to the conversation.
@@ -225,7 +291,6 @@ extern NSString* const ZNGConversationActivityKey;
  *  @see ZNGConversationDelegate
  */
 @property(weak, nullable) id<ZNGConversationDelegate> delegate;
-
 
 /**
  *  @abstract Boolean representing whether there are previous messages in the conversation that can be fetched or not
@@ -235,20 +300,41 @@ extern NSString* const ZNGConversationActivityKey;
 @property(readonly) BOOL hasPreviousMessages;
 
 /**
+ *  @abstract NSDate representation of when the conversation was last updated.
+ *
+ *  @discussion NSDate object set through the REST API and Web Socket. May be nil.
+ */
+@property(readonly, nullable) NSDate *lastUpdatedAt;
+
+/**
+ *  @abstract A display name for the conversation.
+ *
+ *  @discussion This is set when a conversation is created. Can be nil.
+ */
+@property(readonly, nullable) NSString *displayName;
+
+/**
+ *  @abstract An array of ZNGParticipant objects currently in the conversation.
+ *
+ *  @see ZNGParticipant
+ */
+@property(readonly, nullable) NSArray *participants;
+
+/**
  *  @abstract Marks all unread messages as read.
  *
  *  @discussion Marks all unread messages as read, and notifies that the unread count changed.
  *
  *  @see ZNGMessage
  */
--(void)markAllAsRead;
+- (void)markAllAsRead;
 
 /**
  *  @abstract Loads previous messages for this conversation, if any
  *
- *  @dicussion Will get previous messages for this conversation based on the timestamp of the current oldest message and will notify the delegate of new incoming messages through [ZNGConversationDelegate conversation:didReceivePreviousMessages:]
+ *  @discussion Will get previous messages for this conversation based on the timestamp of the current oldest message and will notify the delegate of new incoming messages through [ZNGConversationDelegate conversation:didReceivePreviousMessages:]
  */
--(void)loadPreviousMessages;
+- (void)loadPreviousMessages;
 
 /**
  *  @abstract Adds a new message to the conversation.
@@ -258,7 +344,7 @@ extern NSString* const ZNGConversationActivityKey;
  *  @see ZNGMessageUploadFailedNotification
  *  @see ZNGMessageUploadCompletedNotification
  */
--(void)sendMessage:(ZNGMessage*)message;
+- (void)sendMessage:(ZNGMessage *)message;
 
 /**
  *  @abstract Adds an image message to the conversation.
@@ -275,7 +361,13 @@ extern NSString* const ZNGConversationActivityKey;
  *  @param progressBlock Called to report progress updates. May be nil.
  *  @param completionBlock Called when the upload completes or fails. May be nil.
  */
--(void)sendImage:(UIImage *)image withProgress:(nullable ZNGImageUploadProgressBlock)progressBlock completion:(nullable ZNGImageUploadCompletionBlock)completionBlock;
+- (void)sendImage:(UIImage *)image
+     withProgress:(nullable ZNGImageUploadProgressBlock)progressBlock
+       completion:(nullable ZNGImageUploadCompletionBlock)completionBlock;
+
+- (void)sendFile:(NSURL *)fileLocation
+    withProgress:(nullable ZNGFileUploadProgressBlock)progressBlock
+      completion:(nullable ZNGFileUploadCompletionBlock)completionBlock;
 
 /**
  *  @abstract Sends a postback to the server.
@@ -289,7 +381,8 @@ extern NSString* const ZNGConversationActivityKey;
  *  @param messageAction The messageAction for which to send the postback. Must not be nil.
  *  @param completionBlock Called when the postback completes or fails. May be nil.
  */
--(void)postback:(ZNGMessageAction*)messageAction completion:(nullable void (^)(NSError* _Nullable error))completionBlock;
+- (void)postback:(ZNGMessageAction *)messageAction
+      completion:(nullable void (^)(NSError * _Nullable error))completionBlock;
 
 /**
  *  @abstract Retries a message that failed to send.
@@ -299,7 +392,7 @@ extern NSString* const ZNGConversationActivityKey;
  *  @see ZNGMessageUploadFailedNotification
  *  @see ZNGMessageUploadCompletedNotification
  */
--(void)retryMessage:(ZNGMessage*)failedMessage;
+- (void)retryMessage:(ZNGMessage *)failedMessage;
 
 /**
  *  @abstract Notify the server that the user is typing.
@@ -308,7 +401,7 @@ extern NSString* const ZNGConversationActivityKey;
  *
  *  Typing updates are automatically throttled, so you may call this method as often as necessary. The typing stop event will automatically fire 10 seconds after the most recent call to this method.
  */
--(void)startTyping;
+- (void)startTyping;
 
 /**
  *  @abstract Notify the server that the user has finished typing.
@@ -317,7 +410,7 @@ extern NSString* const ZNGConversationActivityKey;
  *
  *  If the user was not flagged as typing recently, this method will result in a no-op.
  */
--(void)stopTyping;
+- (void)stopTyping;
 
 @end
 
@@ -339,7 +432,7 @@ extern NSString* const ZNGConversationActivityKey;
  *  @param conversation The conversation object that initiated the change.
  *  @param unreadCount The new number of unread messages.
  */
--(void)conversation:(ZNGConversation*)conversation unreadCountDidChange:(NSUInteger)unreadCount;
+- (void)conversation:(ZNGConversation *)conversation unreadCountDidChange:(NSUInteger)unreadCount;
 
 /**
  *  @abstract Asks the delegate if an in-app notification should be shown for a message.
@@ -353,7 +446,7 @@ extern NSString* const ZNGConversationActivityKey;
  *
  *  @see ZNGMessage
  */
--(BOOL)conversation:(ZNGConversation*)conversation shouldShowInAppNotificationForMessage:(ZNGMessage*)message;
+- (BOOL)conversation:(ZNGConversation *)conversation shouldShowInAppNotificationForMessage:(ZNGMessage *)message;
 
 /**
  *  @abstract Asks the delegate if the conversation should show for the given action.
@@ -368,16 +461,16 @@ extern NSString* const ZNGConversationActivityKey;
  *
  *  @see ZNGAction
  */
--(BOOL)conversation:(ZNGConversation*)conversation shouldShowForAction:(ZNGAction)action withInfo:(nullable NSDictionary *) info;
+- (BOOL)conversation:(ZNGConversation *)conversation shouldShowForAction:(ZNGAction)action withInfo:(nullable NSDictionary *) info;
 
 /**
  *  @abstract Gives the delegate the option to modify a message before it is sent
  *
- *  @discussion Called when a message is about to be sent to give the delegate the option of modify or decorate its content (i.e. add metadata) before sending to Zingle
+ *  @discussion Called when a message is about to be sent to give the delegate the option of modify or decorate its content (i.e. add metadata) before sending to Zingle. When the message type is `file` or `image`, only the message `metadata` may be updated. Other message properties such as `type` or `text` won't be considered.
  *
  *  @return the message to be sent
  */
--(ZNGMessage *)conversation:(ZNGConversation*)conversation willSendMessage:(ZNGMessage *)message;
+- (ZNGMessage *)conversation:(ZNGConversation*)conversation willSendMessage:(ZNGMessage *)message;
 
 /**
  *  @abstract Gives the delegate the option to modify a message before it is displayed. If nil is returned the message will be hidden
@@ -386,7 +479,7 @@ extern NSString* const ZNGConversationActivityKey;
  *
  *  @return the message to be displayed. If nil, the message won't get displayed
  */
--(nullable ZNGMessage *)conversation:(ZNGConversation*)conversation willDisplayMessage:(ZNGMessage *)message;
+- (nullable ZNGMessage *)conversation:(ZNGConversation *)conversation willDisplayMessage:(ZNGMessage *)message;
 
 /**
  *  @abstract Notifies the delegate of new incoming messages.
@@ -398,27 +491,27 @@ extern NSString* const ZNGConversationActivityKey;
  *
  *  @see ZNGMessage
  */
--(void)conversation:(ZNGConversation*)conversation didReceiveMessages:(NSArray*)messages;
+- (void)conversation:(ZNGConversation *)conversation didReceiveMessages:(NSArray *)messages;
 
 /**
  *  @abstract Notifies the delegate when older messages in the conversation history have been received
  *
- *  @dicussion Called when older messages in the conversation history are received from the server
+ *  @discussion Called when older messages in the conversation history are received from the server
  *
  *  @param conversation The conversation object
  *  @param messages The messages that have been fetched
  */
--(void)conversation:(ZNGConversation*)conversation didReceivePreviousMessages:(NSArray*)messages;
+- (void)conversation:(ZNGConversation *)conversation didReceivePreviousMessages:(NSArray *)messages;
 
 /**
  *  @abstract Notifies the delegate of new conversation activity
  *
- *  @dicussion Called when a new activity is received from the server
+ *  @discussion Called when a new activity is received from the server
  *
  *  @param conversation The conversation object
  *  @param activity The activity that was received
  */
--(void)conversation:(ZNGConversation *)conversation didReceiveActivity:(ZNGConversationActivity *)activity;
+- (void)conversation:(ZNGConversation *)conversation didReceiveActivity:(ZNGConversationActivity *)activity;
 
 /**
  *  @abstract Asks the delegate if default handling should be performed for a message action.
@@ -427,35 +520,42 @@ extern NSString* const ZNGConversationActivityKey;
  *
  *  @return YES to allow default handling. NO to perform custom handling.
  */
--(BOOL)conversation:(ZNGConversation *)conversation shouldHandleMessageAction:(ZNGMessageAction*)action;
+- (BOOL)conversation:(ZNGConversation *)conversation shouldHandleMessageAction:(ZNGMessageAction *)action;
 
 /**
  *  @abstract Notifies the delegate when the conversation is about to be presented.
  *
  *  @discussion Called in the viewWillAppear: method of the conversation view controller.
  */
--(void)conversation:(ZNGConversation *)conversation willShowViewController:(UIViewController*)viewController;
+- (void)conversation:(ZNGConversation *)conversation willShowViewController:(UIViewController *)viewController;
 
 /**
  *  @abstract Notifies the delegate when presentation of the conversation completes.
  *
  *  @discussion Called in the viewDidAppear: method of the conversation view controller.
  */
--(void)conversation:(ZNGConversation *)conversation didShowViewController:(UIViewController*)viewController;
+- (void)conversation:(ZNGConversation *)conversation didShowViewController:(UIViewController *)viewController;
 
 /**
  *  @abstract Notifies the delegate when the conversation is about to be dismissed.
  *
  *  @discussion Called in the viewWillDisappear: method of the conversation view controller.
  */
--(void)conversation:(ZNGConversation *)conversation willDismissViewController:(UIViewController*)viewController;
+- (void)conversation:(ZNGConversation *)conversation willDismissViewController:(UIViewController *)viewController;
 
 /**
  *  @abstract Notifies the delegate when dismissal of the conversation completes.
  *
  *  @discussion Called in the viewDidDisappear: method of the conversation view controller.
  */
--(void)conversation:(ZNGConversation *)conversation didDismissViewController:(UIViewController*)viewController;
+- (void)conversation:(ZNGConversation *)conversation didDismissViewController:(UIViewController *)viewController;
+
+/**
+ * @abstract Notifies the delegate when the conversations list was updated
+ *
+ * @param NSArray<ZNGConversation> The updated array of ZNGConversation
+ */
+- (void)conversationListDidRefresh:(NSArray<ZNGConversation *> *)conversationList;
 
 @end
 NS_ASSUME_NONNULL_END

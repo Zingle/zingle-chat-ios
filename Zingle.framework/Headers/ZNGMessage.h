@@ -5,6 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZNGCoordinates.h"
+#import "ZNGDisplaySettings.h"
 
 /**
  *  @abstract Notification that is fired when a message fails to upload.
@@ -70,7 +71,7 @@ typedef NS_ENUM(NSInteger, ZNGMessageUploadStatus) {
     ZNGMessageUploadStatusNotUserMessage
 };
 
-@interface ZNGMessage : NSObject
+@interface ZNGMessage : NSObject <NSSecureCoding>
 
 /**
  *  @abstract Create a message with the given text. The message will be owned by the current user.
@@ -120,7 +121,7 @@ typedef NS_ENUM(NSInteger, ZNGMessageUploadStatus) {
 /**
  *  @abstract Returns YES if the message originated from the user, or NO if the message comes from the app team.
  */
-@property(readonly) BOOL isFromCurrentUser;
+@property (nonatomic) BOOL isFromCurrentUser;
 
 /**
  *  @abstract The upload status of the message.
@@ -139,9 +140,23 @@ typedef NS_ENUM(NSInteger, ZNGMessageUploadStatus) {
 @property(readonly, nullable) NSArray* actions;
 
 /**
- *  @abstract The url to the image asset, if applicable. Returns nil if the message is not an image message.
+ *  @abstract An array of ZNGMessageItem objects representing the items associated with this message
+ *
+ *  @discussion Only messages of type `ZNGMessageTypeCarousel` and `ZNGMessageTypeList` contain items.
+ *
+ *  @see ZNGMessageItem
+ */
+@property(readonly, nullable) NSArray* items;
+
+/**
+ *  @abstract The url to the media asset, if applicable. Returns nil if the message is not an image or file message.
  */
 @property(nullable) NSString* mediaUrl;
+
+/**
+ *  @abstract The size of the media asset in bytes. May be nil.
+ */
+@property(nullable) NSNumber* mediaSize;
 
 /**
  *  @abstract The type the message.
@@ -154,6 +169,13 @@ typedef NS_ENUM(NSInteger, ZNGMessageUploadStatus) {
  *  @abstract Coordinates for a location for a message of type ZNGMessageTypeLocation
  */
 @property(readonly, nullable) ZNGCoordinates *coordinates;
+
+/**
+ *  @abstract Settings to adjust the layout of a message of type ZNGMessageTypeCarousel
+ *
+ *  @see ZNGDisplaySettings
+ */
+@property(readonly, nullable) ZNGDisplaySettings *displaySettings;
 
 /**
  *  @abstract The role of the message.

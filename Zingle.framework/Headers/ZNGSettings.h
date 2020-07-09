@@ -4,24 +4,46 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZNGAuthenticationDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ *  @abstract When added to allowedMenuItems, enables the option to take a photo from the conversation view
+ */
+extern NSString *const ZNGMenuItemCamera;
+
+/**
+ *  @abstract When added to allowedMenuItems, enables the option to select an image or video from gallery from the conversation view
+ */
+extern NSString *const ZNGMenuItemGallery;
+
+/**
+ *  @abstract When added to allowedMenuItems, enables the option to upload a document from the conversation view
+ */
+extern NSString *const ZNGMenuItemDocument;
+
+/**
+ *  @abstract When added to allowedMenuItems, enables the option to share location from the conversation view
+ */
+extern NSString *const ZNGMenuItemLocation;
+
 @interface ZNGSettings : NSObject
 
 /**
- *  @abstract Initializes a settings object with the given app id.
+ * @abstract Initializes a settings object with the given integrationId.
  *
- *  @param appId A valid app id retrieved from the Zingle web portal.
- */
-+(instancetype)settingsWithAppId:(NSString*)appId;
+ * @param integrationId A valid integration id retrieved from the Zingle web portal.
+*/
++ (instancetype)settingsWithIntegrationId:(NSString *)integrationId;
 
 /**
- *  @abstract Initializes a settings object with the given app id and auth code.
+ *  @abstract Initializes a settings object with the given integration id and auth code.
  *
- *  @param appId A valid app id retrieved from the Zingle web portal.
+ *  @param integrationId A valid integration id retrieved from the Zingle web portal.
  *  @param authCode A valid auth code generated from the Zingle API.
  */
-+(instancetype)settingsWithAppId:(NSString*)appId andAuthCode:(NSString*)authCode;
++ (instancetype)settingsWithIntegrationId:(NSString*)integrationId andAuthCode:(NSString *)authCode;
 
 /**
  *  @abstract The app id corresponding to your application.
@@ -30,7 +52,16 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  This value may only be set once, and must be set at init time.
  */
-@property(nonatomic, copy) NSString* appId;
+@property(nonatomic, copy) NSString *appId;
+
+/**
+ *  @abstract The integration id corresponding to your application.
+ *
+ *  @discussion integration id can be retrieved from the Zingle web portal
+ *
+ *  This value may only be set once, and must be set at init time.
+ */
+@property(nonatomic, copy) NSString *integrationId;
 
 /**
  *  @abstract The auth code being used to authenticate as an existing user.
@@ -39,7 +70,15 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  This value may only be set once, and must be set at init time.
  */
-@property(nonatomic, copy) NSString* authCode;
+@property(nonatomic, copy) NSString *authCode;
+
+/**
+ *  @abstract The Zingle region for this account.
+ *
+ *  @discussion Leave unspecified to use the default region (US). Set to "eu-1" to use the EU region.
+ *
+ */
+@property(nonatomic, copy) NSString *region;
 
 /**
  *  @abstract The accent color for the conversation screen.
@@ -48,7 +87,16 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  The default value is #00B0FF.
  */
-@property(nonatomic, strong) UIColor* conversationAccentColor;
+@property(nonatomic, strong) UIColor *conversationAccentColor;
+
+/**
+ *  @abstract The text color for user messages.
+ *
+ *  @discussion Used as the text color of user message bubbles.
+ *
+ *  The default value is #FFFFFF.
+ */
+@property(nonatomic, strong) UIColor *userMessageTextColor;
 
 /**
  *  @abstract The status bar style to use on the conversation screen.
@@ -58,6 +106,24 @@ NS_ASSUME_NONNULL_BEGIN
  *  The default value is UIStatusBarStyleDefault.
  */
 @property UIStatusBarStyle conversationStatusBarStyle;
+
+/**
+ *  @abstract The items to display in the conversation menu
+ *
+ *  @discussion Valid values are ZNGMenuItemCamera, ZNGMenuItemGallery, ZNGMenuItemDocument and ZNGMenuItemLocation
+ *
+ *  All options are displayed by default. Setting this value to nil or an empty array will hide the menu button
+ */
+@property(nonatomic, strong, nullable) NSArray<NSString *>* allowedMenuItems;
+
+/**
+ *  @abstract Allow sending messages from the conversation view when offline
+ *
+ *  @discussion Setting this to `YES` allows the user to send messages even when the device is offline. It also prevents an network error banner from showing when offline.
+ *
+ *  Note that messages that are sent while offline will fail to send and the message will display an option for the user to retry
+ */
+@property BOOL allowOfflineUsage;
 
 /**
  *  @abstract Maximum number of seconds to display in-app notifications before dismissing.
@@ -116,6 +182,17 @@ NS_ASSUME_NONNULL_BEGIN
  *  @see Zingle
  */
 @property BOOL requestPushPermissionOnFirstMessage;
+
+/**
+ *  @abstract Delegate that will be notified of authentication related events
+ *
+ *  @discussion This delegate is useful if your app uses expiring tokens for your users. This way you can renew an invalid jwt when needed without having to call +login:jwt:completionHandler. May be nil
+ *
+ *  This value may only be set once, and must be set at init time.
+ *
+ *  @see ZNGAuthenticationDelegate
+ */
+@property(nullable) id<ZNGAuthenticationDelegate> authenticationDelegate;
 
 @end
 NS_ASSUME_NONNULL_END

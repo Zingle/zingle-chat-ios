@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "ZingleMessaging"
-  s.version               = "1.0.0"
+  s.version               = "3.0.1"
   s.summary               = "Zingle Messaging SDK"
   s.description           = "Zingle is a multi-channel communications platform that allows the sending, receiving, and automating of conversations between a business and a customer.  The Zingle Messaging SDK provides Zingle customers (businesses) a chat interface for use in their own native iOS applications, allowing users to communicate via Zingle without requiring them to use SMS or another external channel." 
   s.homepage              = "https://github.com/Zingle/zingle-chat-ios"
@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.module_map            = "Zingle.framework/Modules/module.modulemap"
   s.frameworks            = "Zingle", "CoreText", "SystemConfiguration", "CoreTelephony", "Foundation", "CoreGraphics", "UIKit", "QuartzCore", "AssetsLibrary", "Photos", "AVFoundation", "CFNetwork"
   s.library               = "icucore"
+  s.xcconfig              = { "FRAMEWORK_SEARCH_PATHS" => "$(PODS_ROOT)/Zingle" }
   s.vendored_frameworks   = "Zingle.framework"
   s.requires_arc          = true
   s.platform              = :ios
