@@ -29,7 +29,7 @@ Objective-C:
 ```objc
 #import <Zingle/Zingle.h>
 
-[Zingle initWithSettings:[ZNGSettings settingsWithAppId:@"YOUR_APP_ID"] completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
+[Zingle initWithSettings:[ZNGSettings settingsWithIntegrationId:@"YOUR_INTEGRATION_ID"] completionHandler:^(NSError * _Nullable error, NSDictionary * _Nullable userInfo) {
     // Your code after init is complete
 }];
 ```
@@ -37,7 +37,7 @@ Objective-C:
 Swift:
 
 ```swift
-Zingle.initWith(ZNGSettings(appId: "YOUR_APP_ID")) { (error: Error?, userInfo: [AnyHashable : Any]?) in
+Zingle.initWith(ZNGSettings(integrationId: "YOUR_INTEGRATION_ID")) { (error: Error?, userInfo: [AnyHashable : Any]?) in
     // Your code after init is complete
 }
 ```
