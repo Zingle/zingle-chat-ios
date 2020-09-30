@@ -45,6 +45,40 @@ Zingle.initWith(ZNGSettings(integrationId: "YOUR_INTEGRATION_ID")) { (error: Err
 # Documentation
 Detailed documentation is available in the docset contained in this repository
 
+# Customizing Colors
+The style of the conversation user interface can be controlled through two techniques:
+
+* Using the `UIAppearance` proxy of `UINavigationBar` to style the navigation bar’s color and appearance.
+* The `ZNGSettings` class provides access to the status bar and the color of the message bubbles and its text.
+
+Suppose you wanted the conversation UI to have a black navigation bar and red message bubbles with white text. First, you’d use `UINavigationBar`’s appearance proxy to set up the navigation bar. Then, you’d use `ZNGSettings` to finish styling the UI:
+
+Objective-C:
+```
+SKTSettings* settings = [SKTSettings settingsWithIntegrationId:@"YOUR_INTEGRATION_ID"];
+settings.conversationAccentColor = [UIColor redColor];
+settings.userMessageTextColor = [UIColor whiteColor];
+settings.conversationStatusBarStyle = UIStatusBarStyleLightContent;
+
+[[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+[[UINavigationBar appearance] setTintColor:[UIColor redColor]];
+[[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor redColor] }];
+```
+
+Swift:
+```
+var settings = SKTSettings(integrationId: "YOUR_INTEGRATION_ID")
+settings.conversationAccentColor = UIColor.redColor();
+settings.userMessageTextColor = UIColor.whiteColor();
+settings.conversationStatusBarStyle = UIStatusBarStyle.LightContent;
+
+UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+UINavigationBar.appearance().tintColor = UIColor.redColor()
+UINavigationBar.appearance().titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.redColor()]
+Menu items
+The iOS SDK features a tappable menu icon that allows the user to send various message
+```
+
 # Customizing Strings 
 The strings used in the SDK interface can be customized by creating an empty strings file in your XCode project called ZingleLocalizable.strings and specifying overrides in that file.  Strings are references by their original value:
 ```
