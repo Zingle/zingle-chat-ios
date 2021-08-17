@@ -45,14 +45,14 @@ extern NSString *const ZNGConversationActivityTypeParticipantAdded;
 extern NSString *const ZNGConversationActivityTypeParticipantRemoved;
 
 /**
- *  @abstract A key whose value is an NSString representing the appMaker name.
+ *  @abstract A key whose value is an NSString representing the business name.
  *
  *  @discussion This key is used in the ZNGConversationActivity data object.
  */
 extern NSString *const ZNGConversationActivityDataNameKey;
 
 /**
- *  @abstract A key whose value is an NSString representing the URL of the appMaker avatar.
+ *  @abstract A key whose value is an NSString representing the URL of the business avatar.
  *
  *  @discussion This key is used in the ZNGConversationActivity data object.
  */
@@ -78,7 +78,7 @@ extern NSString *const ZNGConversationActivityDataAvatarUrlKey;
 @property(readonly) NSString *type;
 
 /**
- *  @abstract additional data for this activity. Posible values are the appMaker's 'name' and/or 'avatarUrl'
+ *  @abstract additional data for this activity. Posible values are the business's 'name' and/or 'avatarUrl'
  */
 @property(readonly, nullable) NSDictionary *data;
 
@@ -88,16 +88,16 @@ extern NSString *const ZNGConversationActivityDataAvatarUrlKey;
 @property(readonly, nullable) NSString *conversationId;
 
 /**
- *  @abstract date when the appMaker last read user messages for activities of type ZNGConversationActivityTypeConversationRead
+ *  @abstract date when the business last read user messages for activities of type ZNGConversationActivityTypeConversationRead
  */
-@property(readonly, nullable) NSDate *appMakerLastRead;
+@property(readonly, nullable) NSDate *businessLastRead;
 
 /**
- * @abstract The appUserId if available, null otherwise
+ * @abstract The userId if available, null otherwise
  *
  * available for ZNGConversationActivityTypeParticipantAdded, ZNGConversationActivityTypeParticipantRemoved
  */
-@property(readonly, nullable) NSString *appUserId;
+@property(readonly, nullable) NSString *userId;
 
 @end
 NS_ASSUME_NONNULL_END

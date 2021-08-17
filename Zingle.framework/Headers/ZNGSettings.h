@@ -90,6 +90,32 @@ extern NSString *const ZNGMenuItemLocation;
 @property(nonatomic, strong) UIColor *conversationAccentColor;
 
 /**
+ *  @abstract The accent color for the conversation screen in Dark Mode.
+ *
+ *  @discussion Used as the color of user message bubbles, as well as the color of the send button and text input caret.
+ *
+ *  The default value is #00B0FF.
+ */
+@property(nonatomic, strong) UIColor *conversationAccentColorDarkMode;
+
+/**
+ *  @abstract The accent color for the conversation list screen.
+ *
+ *  @discussion Used as the color of the create conversation button
+ *
+ *  The default value is #00B0FF.
+ */
+@property(nonatomic, strong) UIColor *conversationListAccentColor;
+
+/**
+ *  @abstract The text color for carousels that appear in the conversation screen.
+ *
+ *  @discussion Used as the text color of the carousel text.
+ *
+ */
+@property(nonatomic, strong) UIColor *carouselTextColor;
+
+/**
  *  @abstract The text color for user messages.
  *
  *  @discussion Used as the text color of user message bubbles.
@@ -99,6 +125,15 @@ extern NSString *const ZNGMenuItemLocation;
 @property(nonatomic, strong) UIColor *userMessageTextColor;
 
 /**
+ *  @abstract The text color for user messages in Dark Mode.
+ *
+ *  @discussion Used as the text color of user message bubbles.
+ *
+ *  The default value is #FFFFFF.
+ */
+@property(nonatomic, strong) UIColor *userMessageTextColorDarkMode;
+
+/**
  *  @abstract The status bar style to use on the conversation screen.
  *
  *  @discussion You should use this property if your app uses UIAppearance to style UINavigationBar, and your styling requires a specific status bar color.
@@ -106,6 +141,15 @@ extern NSString *const ZNGMenuItemLocation;
  *  The default value is UIStatusBarStyleDefault.
  */
 @property UIStatusBarStyle conversationStatusBarStyle;
+
+/**
+ *  @abstract The status bar style to use on the conversation screen in Dark Mode.
+ *
+ *  @discussion You should use this property if your app uses UIAppearance to style UINavigationBar, and your styling requires a specific status bar color.
+ *
+ *  The default value is UIStatusBarStyleDefault.
+ */
+@property UIStatusBarStyle conversationStatusBarStyleDarkMode;
 
 /**
  *  @abstract The items to display in the conversation menu
@@ -119,7 +163,7 @@ extern NSString *const ZNGMenuItemLocation;
 /**
  *  @abstract Allow sending messages from the conversation view when offline
  *
- *  @discussion Setting this to `YES` allows the user to send messages even when the device is offline. It also prevents an network error banner from showing when offline.
+ *  @discussion Setting this to `YES` allows the user to send messages even when the device is offline. It also prevents an network error banner from showing when offline. This setting only applies to the conversation view.
  *
  *  Note that messages that are sent while offline will fail to send and the message will display an option for the user to retry
  */
@@ -192,7 +236,7 @@ extern NSString *const ZNGMenuItemLocation;
  *
  *  @see ZNGAuthenticationDelegate
  */
-@property(nullable) id<ZNGAuthenticationDelegate> authenticationDelegate;
+@property(weak, nonatomic, nullable) id<ZNGAuthenticationDelegate> authenticationDelegate;
 
 @end
 NS_ASSUME_NONNULL_END
