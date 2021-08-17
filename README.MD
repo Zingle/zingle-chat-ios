@@ -8,21 +8,33 @@ To add the Zingle.framework library to your XCode project, follow the steps belo
 gem install cocoapods
 ```
 
-2. Add the Zingle dependency to your [Podfile](https://guides.cocoapods.org/using/the-podfile.html)
+2. Copy the `Zingle.xcframework` and `Zingle.podspec` files somewhere in your project directory, for example in `vendor/Zingle`
+3. Add the Zingle dependency to your [Podfile](https://guides.cocoapods.org/using/the-podfile.html), using a local `path` that points to the directory in step 2
 
 ```ruby
 target 'YourApp' do
-    pod 'ZingleMessaging'
+    pod 'Zingle', :path => 'vendor/Zingle'
 end
 ```
 
-3. Install the pod
+4. Install the pod
 
 ```bash
 pod install
 ```
 
-4. Open the generated `.xcworkspace` file, and start using the framework in your code.
+5. Open the generated `.xcworkspace` file and add the following keys to your app's Info.plist file (replacing the values if desired):
+
+```xml
+<key>NSPhotoLibraryUsageDescription</key>
+<string>${PRODUCT_NAME} will read your photo library to gather additional information</string>
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>${PRODUCT_NAME} will write to your photo library to gather additional information</string>
+<key>NSCameraUsageDescription</key>
+<string>${PRODUCT_NAME} will use your camera to gather additional information</string>
+```
+
+6. Start using the framework in your code.
 
 Objective-C:
 
@@ -42,6 +54,7 @@ Zingle.initWith(ZNGSettings(integrationId: "YOUR_INTEGRATION_ID")) { (error: Err
 }
 ```
 
+
 # Documentation
 Detailed documentation is available in the docset contained in this repository
 
@@ -55,7 +68,7 @@ Suppose you wanted the conversation UI to have a black navigation bar and red me
 
 Objective-C:
 ```
-SKTSettings* settings = [SKTSettings settingsWithIntegrationId:@"YOUR_INTEGRATION_ID"];
+ZNGSettings* settings = [ZNGSettings settingsWithIntegrationId:@"YOUR_INTEGRATION_ID"];
 settings.conversationAccentColor = [UIColor redColor];
 settings.userMessageTextColor = [UIColor whiteColor];
 settings.conversationStatusBarStyle = UIStatusBarStyleLightContent;
@@ -67,7 +80,7 @@ settings.conversationStatusBarStyle = UIStatusBarStyleLightContent;
 
 Swift:
 ```
-var settings = SKTSettings(integrationId: "YOUR_INTEGRATION_ID")
+var settings = ZNGSettings(integrationId: "YOUR_INTEGRATION_ID")
 settings.conversationAccentColor = UIColor.redColor();
 settings.userMessageTextColor = UIColor.whiteColor();
 settings.conversationStatusBarStyle = UIStatusBarStyle.LightContent;
@@ -79,7 +92,7 @@ Menu items
 The iOS SDK features a tappable menu icon that allows the user to send various message
 ```
 
-# Customizing Strings 
+# Customizing Strings
 The strings used in the SDK interface can be customized by creating an empty strings file in your XCode project called ZingleLocalizable.strings and specifying overrides in that file.  Strings are references by their original value:
 ```
 /* Nav bar button, action sheet cancel button */
