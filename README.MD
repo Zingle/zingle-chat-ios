@@ -1,3 +1,16 @@
+# Breaking changes from previous version
+- Updated the following ZNGUser properties.
+  - userId is now externalId
+  - properties is now metadata
+  - appUserId is now userId
+- Updated the following ZNGConversation properties.
+  - appUserId is now userId
+  - appMakerLastRead is now businessLastRead
+  - appMaker is now business
+- Updated the following ZNGMessage properties for the messages included in the messages array
+  - authorId is now userId and will only be included for messages with role equals to user
+  - name is now displayName
+
 # Installation guide
 
 To add the Zingle.framework library to your XCode project, follow the steps below to install the framework using CocoaPods
