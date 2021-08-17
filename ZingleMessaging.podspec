@@ -16,5 +16,7 @@ Pod::Spec.new do |s|
   s.vendored_frameworks   = "Zingle.framework"
   s.requires_arc          = true
   s.platform              = :ios
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.pod_target_xcconfig   = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end
